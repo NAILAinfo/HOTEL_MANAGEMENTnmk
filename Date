@@ -5,9 +5,7 @@ public class Date {
     private int annee;
 //constructeur
     public Date(int jour, int mois, int annee) {
-        if (annee < 2024) {
-            throw new IllegalArgumentException("L'année doit être égale ou supérieure à 2024.");
-        }
+      
         if (mois < 1 || mois > 12) {
             throw new IllegalArgumentException("Le mois doit être compris entre 1 et 12.");
         }
