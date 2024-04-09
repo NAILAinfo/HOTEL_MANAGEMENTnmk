@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.Map;
+// but : gestion des chambres
 // a modifier
 public class GestionC {
 
