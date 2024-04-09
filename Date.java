@@ -74,6 +74,17 @@ public class Date {
         } else {j--;}
 return new Date(j,m,a);
 }
+// déterminer si la date  est après la date donnée 
+    public boolean apres(Date autre) {
+    if (annee > autre.annee) {return true;} 
+    else 
+         if (annee < autre.annee) {return false;}
+         else {
+               if (mois > autre.mois) {return true;} 
+               else if (.mois < autre.mois) {return false;} 
+               else {return jour > autre.jour;}
+              }
+   }
     // Creation d'une date 
         //try {
           //  Date date = new Date(30, 2, 2024);
