@@ -28,4 +28,29 @@ public class Reservation {
     public void setDebut(Date debut) {this.debut = debut;}
     public Date getFin() {return fin;}
     public void setFin(Date fin) {this.fin = fin;}
+    
+      public int peridoe() {
+         return debut.differenceJ(fin);
+   
+    }
+    private boolean peutAnnuler(Date annulation) {
+        Date d=debut.hier();
+        return d.estApres(annulation);
+    }
+    public void annuler(Date dateAnnulation) {
+        // Vérification pour ne pas permettre l'annulation la veille de l'arrivée
+        if (!peutAnnuler(dateAnnulation)) {
+            System.out.println("Impossible d'annuler la réservation la veille de l'arrivée.");
+            return;
+        }
+
+        // Mettre à jour l'état de la chambre
+        chambre.setEtat(Chambre.Disponibilite.DISPONIBLE);
+
+        // Supprimer les dates de séjour enregistrées
+        debut.clear();
+         fin.clear();
+        System.out.println("Réservation annulée avec succès.");
+    }
+
 }
