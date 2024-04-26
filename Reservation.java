@@ -11,7 +11,7 @@ public class Reservation {
         this.num = client.getNum();
         this.numero = numero;
         // Vérifie si la date de fin est après la date de début
-        if (!fin.apres(debut)) {
+        if (!fin.estApres(debut)) {
             throw new IllegalArgumentException("La date de fin doit être après la date de début.");
         }
         this.debut = debut;
@@ -48,8 +48,8 @@ public class Reservation {
         chambre.setEtat(Chambre.Disponibilite.DISPONIBLE);
 
         // Supprimer les dates de séjour enregistrées
-        debut.clear();
-         fin.clear();
+     //   debut.clear();
+       //  fin.clear();
         System.out.println("Réservation annulée avec succès.");
     }
 
