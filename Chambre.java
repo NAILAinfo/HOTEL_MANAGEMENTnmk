@@ -1,4 +1,13 @@
 public class Chambre {
+    // Définition des tarifs de base pour chaque type de chambre
+    public static  double TARIF_STANDARD_BASE = 100.0;
+    public static  double TARIF_DE_LUXE_BASE = 150.0;
+    public static  double TARIF_CHAMBRE_FAMILIALE_BASE = 200.0;
+    public static  double TARIF_SUITE_BASE = 250.0;
+    public static  double TARIF_EXECUTIVE_BASE = 300.0;
+
+    // Ajout du coût supplémentaire pour le dîner
+    public static final double SUPPLEMENT_DINER = 50.0;
     // enumeration pour le type de chambre
     public enum Type { STANDARD, DE_LUXE, CHAMBRE_FAMILIALE, SUITE, EXECUTIVE}
 // enumeration pour le type de chambre
@@ -40,5 +49,26 @@ public class Chambre {
     public void setEtat(Disponibilite etat) {this.etat = etat;}
 
     public String toString() {return "Chambre:" +"numero='" + numero + '\'' +", type=" + type +", tarif=" + tarif +'}';}
-    
+
+
+   
+
+   
+    // Méthode pour assigner le tarif en fonction du type de chambre
+    private double assignerTarif(Type type) {
+        switch (type) {
+            case STANDARD:
+                return TARIF_STANDARD_BASE;
+            case DE_LUXE:
+                return TARIF_DE_LUXE_BASE;
+            case CHAMBRE_FAMILIALE:
+                return TARIF_CHAMBRE_FAMILIALE_BASE;
+            case SUITE:
+                return TARIF_SUITE_BASE;
+            case EXECUTIVE:
+                return TARIF_EXECUTIVE_BASE;
+            default:
+                throw new IllegalArgumentException("Type de chambre non pris en charge.");
+        }
+    }
 }
