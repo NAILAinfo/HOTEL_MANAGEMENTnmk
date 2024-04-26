@@ -75,16 +75,45 @@ public class Date {
 return new Date(j,m,a);
 }
 // déterminer si la date  est après la date donnée 
-    public boolean apres(Date autre) {
+    public boolean estApres(Date autre) {
     if (annee > autre.annee) {return true;} 
     else 
          if (annee < autre.annee) {return false;}
          else {
                if (mois > autre.mois) {return true;} 
-               else if (.mois < autre.mois) {return false;} 
+               else if (mois < autre.mois) {return false;} 
                else {return jour > autre.jour;}
               }
    }
+   
+    // Méthode pour calculer la différence entre deux dates
+    public int differenceJ(Date autre) {
+        // Vérifier que les deux dates ne sont pas égales
+        if (this.egale(autre)) {
+            return 0;
+        }
+
+        // Vérifier que les deux dates ne sont pas consécutives c.a.d la différence sera 1
+        Date date1 = this;
+        Date date2 = autre;
+        if (date1.estApres(date2)) {
+            date1 = autre;
+            date2 = this;
+        }
+        Date dateTemp = date1.hier();
+        if (dateTemp.egale(date2)) {
+            return 1;
+        }
+
+        // Calculer la différence en jours
+        int différence = 0;
+        while (!dateTemp.egale(date2)) {
+            dateTemp = dateTemp.hier();
+            différence++;
+        }
+        return différence;
+    }
+   
     // Creation d'une date 
         //try {
           //  Date date = new Date(30, 2, 2024);
