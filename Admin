@@ -1,0 +1,122 @@
+
+
+import java.util.List;
+
+public class Admin {
+    private String nom;
+    private String prenom;
+    private String num;
+    private String email;
+    private String motDePasse;
+    private String tel;
+    private MyDate naissance;
+    private List <Chambre> chambres ;
+    private List <Reservation> reservations ;
+    private List<Reservation> reservationaccepte;
+
+    //constructeur
+
+
+
+    //getters
+    public String getNom() {return nom;}
+    public String getPrenom() {return prenom;}
+    public String getNum() { return num;}
+    public String getEmail() {return email;}
+    public String getMotDePasse() {return motDePasse;}
+    public String getTel() {return tel;}
+    public MyDate getNaissance() {return naissance;}
+
+
+    //setters
+    public void setNom(String nom) { this.nom = nom;}
+    public void setPrenom(String prenom) {this.prenom = prenom;}
+    public void setNum(String num) {this.num = num;}
+    public void setEmail(String email) {this.email = email;}
+    public void setMotDePasse(String motDePasse) {this.motDePasse = motDePasse;}
+    public void setTel(String tel) {this.tel = tel;}
+    public void setNaissance(MyDate naissance) {this.naissance = naissance;}
+
+    public void ajouterChambre(Chambre chambre) {
+        chambres.add(chambre);
+    }
+
+    // Méthode pour supprimer une chambre
+    public void supprimerChambre(String numero) {
+        for (int i = 0; i < chambres.size(); i++) {
+            if (chambres.get(i).getNumero().equals(numero)) {
+                chambres.remove(i);
+                break;
+            }
+        }
+    }
+
+    // Méthode pour modifier une chambre par numéro
+    public void modifierChambre(Chambre chambre) {
+        for (int i = 0; i < chambres.size(); i++) {
+            if (chambres.get(i).getNumero().equals(chambre.getNumero())) {
+                chambres.set(i, chambre);
+                break;
+            }
+        }
+    }
+
+    // Méthode pour accepter une réservation
+    public void accepterReservation(Reservation reservation) {
+        reservation.setStatut("Acceptée");
+        reservationaccepte.add(reservation);
+        System.out.println("La réservation a été acceptée avec succès.");
+    }
+
+    // Méthode pour refuser une réservation
+    public void refuserReservation(Reservation reservation) {
+        reservations.remove(reservation);
+        System.out.println("La réservation a été refusée avec succès.");
+    }
+
+    // Méthode pour modifier le type d'une chambre
+    public void modifierChambreParType(String numeroChambre, Chambre.Type nouveauType) {
+        Chambre chambre = rechercherChambreParNumero(numeroChambre);
+        if (chambre != null) {
+            chambre.setType(nouveauType);
+            System.out.println("Le type de la chambre " + numeroChambre + " a été modifié avec succès.");
+        } else {
+            System.out.println("La chambre avec le numéro " + numeroChambre + " n'existe pas.");
+        }
+    }
+
+
+    // Méthode pour rechercher une chambre par son numéro
+    private Chambre rechercherChambreParNumero(String numeroChambre) {
+        for (Chambre chambre : chambres) {
+            if (chambre.getNumero().equals(numeroChambre)) {
+                return chambre;
+            }
+        }
+        return null;
+    }
+
+    // Méthode pour modifier le tarif d'une chambre
+    public void modifierTarif(String numeroChambre, double nouveauTarif) {
+        Chambre chambre = rechercherChambreParNumero(numeroChambre);
+        if (chambre != null) {
+            chambre.setTarif(nouveauTarif);
+            System.out.println("Le tarif de la chambre " + numeroChambre + " a été modifié avec succès.");
+        } else {
+            System.out.println("La chambre avec le numéro " + numeroChambre + " n'existe pas.");
+        }
+    }
+
+    // Méthode pour modifier l'état d'une chambre
+    public void modifierChambreParEtat(String numeroChambre, Chambre.Disponibilite nouvelEtat) {
+        Chambre chambre = rechercherChambreParNumero(numeroChambre);
+        if (chambre != null) {
+            chambre.setEtat(nouvelEtat);
+            System.out.println("L'état de la chambre " + numeroChambre + " a été modifié avec succès.");
+        } else {
+            System.out.println("La chambre avec le numéro " + numeroChambre + " n'existe pas.");
+        }
+    }
+
+
+}}
